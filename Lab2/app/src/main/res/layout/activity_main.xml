@@ -98,7 +98,7 @@
         android:text="______"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="179dp" />
+        app:layout_constraintTop_toTopOf="@+id/turnLabel" />
 
     <TextView
         android:id="@+id/turnLabel"
@@ -108,11 +108,12 @@
         android:layout_marginLeft="84dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:text="Turn : "
         app:layout_constraintEnd_toStartOf="@+id/curPlayerNameID"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1ScoreLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/player1ScoreId" />
 
     <TextView
         android:id="@+id/pointsLabel"
@@ -120,12 +121,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="24dp"
         android:text="Points For This Turn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/curPlayerNameID" />
+        app:layout_constraintTop_toBottomOf="@+id/dieImgId" />
 
     <TextView
         android:id="@+id/turnPointsId"
@@ -160,5 +161,37 @@
         android:text="End Turn"
         app:layout_constraintStart_toEndOf="@+id/rollBtn"
         app:layout_constraintTop_toBottomOf="@+id/turnPointsId" />
+
+    <ImageView
+        android:id="@+id/dieImgId"
+        android:layout_width="117dp"
+        android:layout_height="77dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curPlayerNameID"
+        app:srcCompat="@drawable/die1" />
+
+    <TextView
+        android:id="@+id/player1ScoreId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1ScoreLabel" />
+
+    <TextView
+        android:id="@+id/player2ScoreId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="176dp"
+        android:layout_marginStart="176dp"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/player1ScoreId"
+        app:layout_constraintTop_toTopOf="@+id/player1ScoreId" />
 
 </android.support.constraint.ConstraintLayout>
