@@ -91,4 +91,74 @@
         app:layout_constraintStart_toEndOf="@+id/player1ScoreLabel"
         app:layout_constraintTop_toBottomOf="@+id/player2NameId" />
 
+    <TextView
+        android:id="@+id/curPlayerNameID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="______"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="179dp" />
+
+    <TextView
+        android:id="@+id/turnLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="84dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="24dp"
+        android:text="Turn : "
+        app:layout_constraintEnd_toStartOf="@+id/curPlayerNameID"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1ScoreLabel" />
+
+    <TextView
+        android:id="@+id/pointsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="116dp"
+        android:text="Points For This Turn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curPlayerNameID" />
+
+    <TextView
+        android:id="@+id/turnPointsId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointsLabel" />
+
+    <Button
+        android:id="@+id/rollBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="84dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="8dp"
+        android:text="Roll Die"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/turnPointsId" />
+
+    <Button
+        android:id="@+id/endTurnBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
+        android:text="End Turn"
+        app:layout_constraintStart_toEndOf="@+id/rollBtn"
+        app:layout_constraintTop_toBottomOf="@+id/turnPointsId" />
+
 </android.support.constraint.ConstraintLayout>
