@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
     private Random rand = new Random();
 
+    // need to implement class
     PigGame game = new PigGame();
 
     @Override
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         switch (v.getId()) {
             case R.id.rollBtn:
-
                 rollVal = (rand.nextInt(6)+1);
                 displayImage(rollVal);
                 if (rollVal == 1){
@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                 curPoints += rollVal;
                 break;
 
-
             case R.id.endTurnBtn:
                 endTurn();
                 break;
@@ -97,15 +96,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                 newGame();
                 break;
         }
-
         determineWinner();
-
     }
 
     // display Die after roll button
     private void displayImage(int rollValue){
         int id = 0;
-
         switch(rollValue){
             case 1:
                 id = R.drawable.die1;
@@ -125,13 +121,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             case 6:
                 id = R.drawable.die6;
                 break;
-
         }
         DieImage.setImageResource(id);
     }
 
     private void getPlayerTurn(int whosTurnValue){
-
         if (whosTurnValue == 0){
             whosTurn.setText(player1Name);
         }
@@ -144,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         if(p1TotalPoints >= 11 && p2TotalPoints < 11){
             winner.setText(player1Name);
             isWinner = true;
-
         }
         if(p2TotalPoints >= 11 && p1TotalPoints < 11){
             winner.setText(player2Name);
@@ -154,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         if (playerTurn > 1)
             playerTurn = 0;
         getPlayerTurn(playerTurn);
-
     }
 
     private void endTurn(){
@@ -166,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             p2TotalPoints += curPoints;
             player2Score.setText(Integer.toString(p2TotalPoints));
         }
-
         curPoints = 0;
         playerTurn += 1;
     }
