@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="84dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Player 1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,12 +26,11 @@
         android:layout_marginLeft="108dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="32dp"
         android:text="Player 2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/player1Label"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/player1Label" />
 
     <EditText
         android:id="@+id/player1NameId"
@@ -57,13 +56,12 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Player 2 Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/player1NameId"
-        app:layout_constraintTop_toBottomOf="@+id/player2Label" />
+        app:layout_constraintTop_toTopOf="@+id/player1NameId" />
 
     <TextView
         android:id="@+id/player1ScoreLabel"
@@ -89,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.633"
         app:layout_constraintStart_toEndOf="@+id/player1ScoreLabel"
-        app:layout_constraintTop_toBottomOf="@+id/player2NameId" />
+        app:layout_constraintTop_toBottomOf="@+id/player1NameId" />
 
     <TextView
         android:id="@+id/curPlayerNameID"
@@ -108,7 +106,7 @@
         android:layout_marginLeft="84dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:text="Turn : "
         app:layout_constraintEnd_toStartOf="@+id/curPlayerNameID"
         app:layout_constraintHorizontal_bias="0.282"
@@ -122,9 +120,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="Points For This Turn"
+        android:text="Points For This Turn: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.311"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dieImgId" />
 
@@ -134,33 +132,32 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pointsLabel" />
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toEndOf="@+id/pointsLabel"
+        app:layout_constraintTop_toTopOf="@+id/pointsLabel" />
 
     <Button
         android:id="@+id/rollBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="84dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="28dp"
         android:text="Roll Die"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/turnPointsId" />
+        app:layout_constraintTop_toBottomOf="@+id/pointsLabel" />
 
     <Button
         android:id="@+id/endTurnBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginStart="88dp"
         android:text="End Turn"
         app:layout_constraintStart_toEndOf="@+id/rollBtn"
-        app:layout_constraintTop_toBottomOf="@+id/turnPointsId" />
+        app:layout_constraintTop_toTopOf="@+id/rollBtn" />
 
     <ImageView
         android:id="@+id/dieImgId"
@@ -199,9 +196,9 @@
         android:id="@+id/winnerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="84dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="12dp"
         android:text="Winner:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rollBtn" />
@@ -210,10 +207,21 @@
         android:id="@+id/winnerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="108dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
         android:text="Waiting"
         app:layout_constraintStart_toEndOf="@+id/winnerLabel"
         app:layout_constraintTop_toTopOf="@+id/winnerLabel" />
+
+    <Button
+        android:id="@+id/newGameBtn"
+        android:layout_width="131dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="20dp"
+        android:text="New Game"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winnerLabel" />
 
 </android.support.constraint.ConstraintLayout>

@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private TextView winner;
     private EditText p1Name;
     private EditText p2Name;
+    private Button newGame;
 
+    // initializing values, need to move some to PigGame class
     private int p1TotalPoints = 0;
     private int p2TotalPoints = 0;
     private int playerTurn = 0;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // referring widgets
         rollDie = (Button)findViewById(R.id.rollBtn);
         endTurn = (Button)findViewById(R.id.endTurnBtn);
         turnPoints = (TextView)findViewById(R.id.turnPointsId);
@@ -56,11 +59,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         winner = (TextView)findViewById(R.id.winnerTextView);
         p1Name = (EditText)findViewById(R.id.player1NameId);
         p2Name = (EditText)findViewById(R.id.player2NameId);
+        newGame = (Button)findViewById(R.id.newGameBtn);
+
 
 
         // set listeners
         rollDie.setOnClickListener(this);
         endTurn.setOnClickListener(this);
+        newGame.setOnClickListener(this);
         p1Name.setOnEditorActionListener(this);
         p2Name.setOnEditorActionListener(this);
     }
@@ -87,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                 endTurn();
                 break;
 
+            case R.id.newGameBtn:
+                newGame();
+                break;
         }
 
         determineWinner();
@@ -160,6 +169,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         curPoints = 0;
         playerTurn += 1;
+    }
+
+    private void newGame(){
+        player1Name = "";
+        player2Name = "";
+        playerTurn = 0;
+        p1TotalPoints = 0;
+        p2TotalPoints = 0;
+        curPoints = 0;
+        player1Score.setText(Integer.toString(p1TotalPoints));
+        player2Score.setText(Integer.toString(p2TotalPoints));
+        winner.setText("waiting");
+        p1Name.setText("");
+        p2Name.setText("");
+
     }
 
     @Override
