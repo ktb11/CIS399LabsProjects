@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/player2ScoreId"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -187,11 +187,12 @@
     <TextView
         android:id="@+id/player2ScoreId"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="176dp"
-        android:layout_marginStart="176dp"
+        android:layout_height="22dp"
+        android:layout_marginLeft="168dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="12dp"
         android:text="0"
         app:layout_constraintStart_toEndOf="@+id/player1ScoreId"
-        app:layout_constraintTop_toTopOf="@+id/player1ScoreId" />
+        app:layout_constraintTop_toBottomOf="@+id/player2ScoreLabel" />
 
 </android.support.constraint.ConstraintLayout>

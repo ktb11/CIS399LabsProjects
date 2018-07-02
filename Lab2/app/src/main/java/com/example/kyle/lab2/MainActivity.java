@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private int rollVal;
     private ImageView DieImage;
     private TextView player1Score;
+    private TextView player2Score;
+    private int p1TotalPoints = 0;
+    private int p2TotalPoints = 0;
+    private int playerTurn = 0;
+    private TextView whosTurn;
 
     private Random rand = new Random();
 
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         turnPoints = (TextView)findViewById(R.id.turnPointsId);
         DieImage = (ImageView)findViewById(R.id.dieImgId);
         player1Score = (TextView)findViewById(R.id.player1ScoreId);
+        player2Score = (TextView)findViewById(R.id.player2ScoreId);
+        whosTurn = (TextView)findViewById(R.id.curPlayerNameID);
 
         // set listeners
         rollDie.setOnClickListener(this);
@@ -43,13 +50,24 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         int id = 0;
 
+        if (playerTurn == 0){
+            whosTurn.setText("kyle");
+        }
+        if (playerTurn == 1){
+            whosTurn.setText("bot");
+        }
+        if (playerTurn > 1)
+            playerTurn = 0;
+
         switch (v.getId()) {
             case R.id.rollBtn:
 
                 rollVal = (rand.nextInt(6)+1);
                 if (rollVal == 1) {
                     id = R.drawable.die1;
-                    curPoints += 1;
+                    curPoints = 0;
+                    playerTurn += 1;
+                    break;
                 }
 
                 if (rollVal == 2) {
@@ -80,12 +98,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
                 break;
             case R.id.endTurnBtn:
-                player1Score.setText(Integer.toString(curPoints));
+                if (playerTurn == 0){
+                    p1TotalPoints += curPoints;
+                    player1Score.setText(Integer.toString(p1TotalPoints));
+                }
+                else {
+                    p2TotalPoints += curPoints;
+                    player2Score.setText(Integer.toString(p2TotalPoints));
+                }
+
                 curPoints = 0;
+                playerTurn += 1;
 
                 break;
         }
         DieImage.setImageResource(id);
         turnPoints.setText(Integer.toString(curPoints));
+
     }
 }
