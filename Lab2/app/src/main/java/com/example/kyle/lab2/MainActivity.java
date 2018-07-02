@@ -2,15 +2,18 @@ package com.example.kyle.lab2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener, EditText.OnEditorActionListener {
 
     // define variables for widgets
     private Button rollDie;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private TextView player2Score;
     private TextView whosTurn;
     private TextView winner;
+    private EditText p1Name;
+    private EditText p2Name;
 
     private int p1TotalPoints = 0;
     private int p2TotalPoints = 0;
@@ -28,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private int curPoints = 0;
     private int rollVal;
     private boolean isWinner = false;
+    private String player1Name;
+    private String player2Name;
 
 
     private Random rand = new Random();
@@ -47,10 +54,15 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         player2Score = (TextView)findViewById(R.id.player2ScoreId);
         whosTurn = (TextView)findViewById(R.id.curPlayerNameID);
         winner = (TextView)findViewById(R.id.winnerTextView);
+        p1Name = (EditText)findViewById(R.id.player1NameId);
+        p2Name = (EditText)findViewById(R.id.player2NameId);
+
 
         // set listeners
         rollDie.setOnClickListener(this);
         endTurn.setOnClickListener(this);
+        p1Name.setOnEditorActionListener(this);
+        p2Name.setOnEditorActionListener(this);
     }
 
     @Override
@@ -112,21 +124,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private void getPlayerTurn(int whosTurnValue){
 
         if (whosTurnValue == 0){
-            whosTurn.setText("player1");
+            whosTurn.setText(player1Name);
         }
         else {
-            whosTurn.setText("player2");
+            whosTurn.setText(player2Name);
         }
     }
 
     private void determineWinner(){
         if(p1TotalPoints >= 11 && p2TotalPoints < 11){
-            winner.setText("player1");
+            winner.setText(player1Name);
             isWinner = true;
 
         }
         if(p2TotalPoints >= 11 && p1TotalPoints < 11){
-            winner.setText("player2");
+            winner.setText(player2Name);
             isWinner = true;
         }
         turnPoints.setText(Integer.toString(curPoints));
@@ -148,5 +160,20 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         curPoints = 0;
         playerTurn += 1;
+    }
+
+    @Override
+    public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            switch (view.getId()) {
+                case R.id.player1NameId:
+                    player1Name = p1Name.getText().toString();
+                    break;
+                case R.id.player2NameId:
+                    player2Name = p2Name.getText().toString();
+                    break;
+            }
+        }
+        return false;
     }
 }
