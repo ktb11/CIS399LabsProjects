@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -135,12 +137,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     private void determineWinner(){
-        if(p1TotalPoints >= 11 && p2TotalPoints < 11){
+        if(p1TotalPoints >= 100 && p2TotalPoints < 100){
             winner.setText(player1Name);
+            Toast.makeText(this, player1Name +" has won", Toast.LENGTH_LONG).show();
             isWinner = true;
         }
-        if(p2TotalPoints >= 11 && p1TotalPoints < 11){
+        if(p2TotalPoints >= 100 && p1TotalPoints < 100){
             winner.setText(player2Name);
+            Toast.makeText(this, player2Name +" has won", Toast.LENGTH_LONG).show();
             isWinner = true;
         }
         turnPoints.setText(Integer.toString(curPoints));
