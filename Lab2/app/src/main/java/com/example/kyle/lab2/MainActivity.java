@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -31,15 +30,15 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private Button newGame;
 
     // initializing values, need to move some to PigGame class
-    private int p1TotalPoints = 0;
-    private int p2TotalPoints = 0;
+//    private int p1TotalPoints = 0;
+//    private int p2TotalPoints = 0;
     private int playerTurn = 0;
-    private int curPoints = 0;
-    private int rollVal;
-    private boolean isWinner = false;
+//    private int curPoints = 0;
     private String player1Name;
+    //    private boolean isWinner = false;
     private String player2Name;
 
+    private int rollVal;
 
     private Random rand = new Random();
 
@@ -77,28 +76,28 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     @Override
     public void onClick(View v) {
         int id = 0;
-
         switch (v.getId()) {
             case R.id.rollBtn:
-                rollVal = (rand.nextInt(6)+1);
+                game.getPlayerTurn();
+                rollVal = game.rollDie();
                 displayImage(rollVal);
-                if (rollVal == 1){
-                    curPoints = 0;
-                    playerTurn += 1;
-                    break;
-                }
-                curPoints += rollVal;
+                if (rollVal != 1)
+                    game.curPoints += rollVal;
+                //updateTurnScore();
+                turnPoints.setText(Integer.toString(game.playerTurn));
+
                 break;
 
             case R.id.endTurnBtn:
-                endTurn();
+                game.endTurn();
+                updatePlayerScore();
                 break;
 
             case R.id.newGameBtn:
-                newGame();
+                game.newGame();
                 break;
         }
-        determineWinner();
+        game.determineWinner();
     }
 
     // display Die after roll button
@@ -127,69 +126,87 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         DieImage.setImageResource(id);
     }
 
-    private void getPlayerTurn(int whosTurnValue){
-        if (whosTurnValue == 0){
-            whosTurn.setText(player1Name);
+    private void updateTurnScore(){
+        turnPoints.setText(Integer.toString(game.curPoints));
+        if (game.getPlayerTurn() == 0){
+            whosTurn.setText(game.player1Name);
         }
-        else {
-            whosTurn.setText(player2Name);
-        }
+        else
+            whosTurn.setText(game.player2Name);
     }
 
-    private void determineWinner(){
-        if(p1TotalPoints >= 100 && p2TotalPoints < 100){
-            winner.setText(player1Name);
-            Toast.makeText(this, player1Name +" has won", Toast.LENGTH_LONG).show();
-            isWinner = true;
+    private void updatePlayerScore(){
+        if (game.getPlayerTurn() == 0){
+            player1Score.setText(Integer.toString(game.p1TotalPoints));
         }
-        if(p2TotalPoints >= 100 && p1TotalPoints < 100){
-            winner.setText(player2Name);
-            Toast.makeText(this, player2Name +" has won", Toast.LENGTH_LONG).show();
-            isWinner = true;
-        }
-        turnPoints.setText(Integer.toString(curPoints));
-        if (playerTurn > 1)
-            playerTurn = 0;
-        getPlayerTurn(playerTurn);
+        else
+            player2Score.setText(Integer.toString(game.p2TotalPoints));
     }
 
-    private void endTurn(){
-        if (playerTurn == 0){
-            p1TotalPoints += curPoints;
-            player1Score.setText(Integer.toString(p1TotalPoints));
-        }
-        else {
-            p2TotalPoints += curPoints;
-            player2Score.setText(Integer.toString(p2TotalPoints));
-        }
-        curPoints = 0;
-        playerTurn += 1;
-    }
+//
+//    private void getPlayerTurn(int whosTurnValue){
+//        if (whosTurnValue == 0){
+//            whosTurn.setText(player1Name);
+//        }
+//        else {
+//            whosTurn.setText(player2Name);
+//        }
+//    }
 
-    private void newGame(){
-        player1Name = "";
-        player2Name = "";
-        playerTurn = 0;
-        p1TotalPoints = 0;
-        p2TotalPoints = 0;
-        curPoints = 0;
-        player1Score.setText(Integer.toString(p1TotalPoints));
-        player2Score.setText(Integer.toString(p2TotalPoints));
-        winner.setText("waiting");
-        p1Name.setText("");
-        p2Name.setText("");
+//    private void determineWinner(){
+//        if(p1TotalPoints >= 100 && p2TotalPoints < 100){
+//            winner.setText(player1Name);
+//            Toast.makeText(this, player1Name +" has won", Toast.LENGTH_LONG).show();
+//            isWinner = true;
+//        }
+//        if(p2TotalPoints >= 100 && p1TotalPoints < 100){
+//            winner.setText(player2Name);
+//            Toast.makeText(this, player2Name +" has won", Toast.LENGTH_LONG).show();
+//            isWinner = true;
+//        }
+//        turnPoints.setText(Integer.toString(curPoints));
+//        if (playerTurn > 1)
+//            playerTurn = 0;
+//        getPlayerTurn(playerTurn);
+//    }
 
-    }
+//    private void endTurn(){
+//        if (playerTurn == 0){
+//            p1TotalPoints += curPoints;
+//            player1Score.setText(Integer.toString(p1TotalPoints));
+//        }
+//        else {
+//            p2TotalPoints += curPoints;
+//            player2Score.setText(Integer.toString(p2TotalPoints));
+//        }
+//        curPoints = 0;
+//        playerTurn += 1;
+//    }
+
+//    private void newGame(){
+//        player1Name = "";
+//        player2Name = "";
+//        playerTurn = 0;
+//        p1TotalPoints = 0;
+//        p2TotalPoints = 0;
+//        curPoints = 0;
+//        player1Score.setText(Integer.toString(p1TotalPoints));
+//        player2Score.setText(Integer.toString(p2TotalPoints));
+//        winner.setText("waiting");
+//        p1Name.setText("");
+//        p2Name.setText("");
+//
+//    }
 
     @Override
     public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             switch (view.getId()) {
                 case R.id.player1NameId:
-                    player1Name = p1Name.getText().toString();
+                    game.player1Name = p1Name.getText().toString();
                     break;
                 case R.id.player2NameId:
-                    player2Name = p2Name.getText().toString();
+                    game.player2Name = p2Name.getText().toString();
                     break;
             }
         }
