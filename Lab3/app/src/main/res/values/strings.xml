@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Lab3</string>
+    <string name="pref_show_images">pref_show_images</string>
+    <string name="pref_winning_score">pref_winning_score</string>
+    <string-array name="winning_score_array">
+        <item>50</item>
+        <item>100</item>
+        <item>150</item>
+    </string-array>
+
+    <string-array name="winning_score_vals">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

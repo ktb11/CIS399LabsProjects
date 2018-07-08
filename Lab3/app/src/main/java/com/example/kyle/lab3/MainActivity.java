@@ -1,10 +1,13 @@
 package com.example.kyle.lab3;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,12 +44,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private boolean isWinner = false;
     private String player1Name = "";
     private String player2Name = "";
+    private int winningScore;
+
+    // settings
+    boolean showImg;
 
 
     private Random rand = new Random();
 
     // define SharedPreferences Object
     private SharedPreferences saveVals;
+    private SharedPreferences prefs;
 
     // need to implement class
     //PigGame game = new PigGame();
@@ -57,18 +65,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         setContentView(R.layout.activity_main);
 
         // referring widgets
-        rollDie = (Button)findViewById(R.id.rollBtn);
-        endTurn = (Button)findViewById(R.id.endTurnBtn);
-        turnPoints = (TextView)findViewById(R.id.turnPointsId);
-        DieImage = (ImageView)findViewById(R.id.dieImgId);
-        player1Score = (TextView)findViewById(R.id.player1ScoreId);
-        player2Score = (TextView)findViewById(R.id.player2ScoreId);
-        whosTurn = (TextView)findViewById(R.id.curPlayerNameID);
-        winner = (TextView)findViewById(R.id.winnerTextView);
-        p1Name = (EditText)findViewById(R.id.player1NameId);
-        p2Name = (EditText)findViewById(R.id.player2NameId);
-        newGame = (Button)findViewById(R.id.newGameBtn);
-
+        rollDie = (Button) findViewById(R.id.rollBtn);
+        endTurn = (Button) findViewById(R.id.endTurnBtn);
+        turnPoints = (TextView) findViewById(R.id.turnPointsId);
+        DieImage = (ImageView) findViewById(R.id.dieImgId);
+        player1Score = (TextView) findViewById(R.id.player1ScoreId);
+        player2Score = (TextView) findViewById(R.id.player2ScoreId);
+        whosTurn = (TextView) findViewById(R.id.curPlayerNameID);
+        winner = (TextView) findViewById(R.id.winnerTextView);
+        p1Name = (EditText) findViewById(R.id.player1NameId);
+        p2Name = (EditText) findViewById(R.id.player2NameId);
+        newGame = (Button) findViewById(R.id.newGameBtn);
 
 
         // set listeners
@@ -78,7 +85,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         p1Name.setOnEditorActionListener(this);
         p2Name.setOnEditorActionListener(this);
 
+        // saving data
         saveVals = getSharedPreferences("SaveVals", MODE_PRIVATE);
+
+        // preferences
+        PreferenceManager.setDefaultValues(this,R.xml.preferences, false);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
     }
 
     @Override
@@ -89,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         edit.putInt("p1TotalPoints", p1TotalPoints);
         edit.putInt("p2TotalPoints", p2TotalPoints);
         edit.putInt("playerTurn", playerTurn);
-        edit.putInt("curPoints",curPoints);
+        edit.putInt("curPoints", curPoints);
         edit.commit();
 
         super.onPause();
@@ -103,8 +116,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         // get saved values
         player1Name = saveVals.getString("player1Name", player1Name);
         player2Name = saveVals.getString("player2Name", player2Name);
-        p1TotalPoints = saveVals.getInt("p1TotalPoints",p1TotalPoints);
-        p2TotalPoints = saveVals.getInt("p2TotalPoints",p2TotalPoints);
+        p1TotalPoints = saveVals.getInt("p1TotalPoints", p1TotalPoints);
+        p2TotalPoints = saveVals.getInt("p2TotalPoints", p2TotalPoints);
         playerTurn = saveVals.getInt("playerTurn", playerTurn);
         curPoints = saveVals.getInt("curPoints", curPoints);
 
@@ -116,9 +129,15 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         getPlayerTurn(playerTurn);
         turnPoints.setText(Integer.toString(curPoints));
 
+        // prefs
+        showImg = prefs.getBoolean(getResources().getString(R.string.pref_show_images),true);
+        if (!showImg){
+            DieImage.setVisibility(View.GONE);
+        }
+        else
+            DieImage.setVisibility(View.VISIBLE);
 
-
-
+        winningScore = Integer.valueOf(prefs.getString
 
     }
 
@@ -128,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         switch (v.getId()) {
             case R.id.rollBtn:
-                rollVal = (rand.nextInt(6)+1);
+                rollVal = (rand.nextInt(6) + 1);
                 displayImage(rollVal);
-                if (rollVal == 1){
+                if (rollVal == 1) {
                     curPoints = 0;
                     playerTurn += 1;
                     break;
@@ -150,9 +169,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     // display Die after roll button
-    private void displayImage(int rollValue){
+    private void displayImage(int rollValue) {
         int id = 0;
-        switch(rollValue){
+        switch (rollValue) {
             case 1:
                 id = R.drawable.die1;
                 break;
@@ -175,24 +194,23 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         DieImage.setImageResource(id);
     }
 
-    private void getPlayerTurn(int whosTurnValue){
-        if (whosTurnValue == 0){
+    private void getPlayerTurn(int whosTurnValue) {
+        if (whosTurnValue == 0) {
             whosTurn.setText(player1Name);
-        }
-        else {
+        } else {
             whosTurn.setText(player2Name);
         }
     }
 
-    private void determineWinner(){
-        if(p1TotalPoints >= 100 && p2TotalPoints < 100){
+    private void determineWinner() {
+        if (p1TotalPoints >= 100 && p2TotalPoints < 100) {
             winner.setText(player1Name);
-            Toast.makeText(this, player1Name +" has won", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, player1Name + " has won", Toast.LENGTH_LONG).show();
             isWinner = true;
         }
-        if(p2TotalPoints >= 100 && p1TotalPoints < 100){
+        if (p2TotalPoints >= 100 && p1TotalPoints < 100) {
             winner.setText(player2Name);
-            Toast.makeText(this, player2Name +" has won", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, player2Name + " has won", Toast.LENGTH_LONG).show();
             isWinner = true;
         }
         turnPoints.setText(Integer.toString(curPoints));
@@ -201,12 +219,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         getPlayerTurn(playerTurn);
     }
 
-    private void endTurn(){
-        if (playerTurn == 0){
+    private void endTurn() {
+        if (playerTurn == 0) {
             p1TotalPoints += curPoints;
             player1Score.setText(Integer.toString(p1TotalPoints));
-        }
-        else {
+        } else {
             p2TotalPoints += curPoints;
             player2Score.setText(Integer.toString(p2TotalPoints));
         }
@@ -214,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         playerTurn += 1;
     }
 
-    private void newGame(){
+    private void newGame() {
         player1Name = "";
         player2Name = "";
         playerTurn = 0;
@@ -243,4 +260,36 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         }
         return false;
     }
+
+    /* -------- Activity Callback Methods for the Menu ------- */
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.menu_settings) {
+            startActivity(new Intent(
+                    getApplicationContext(), SettingsActivity.class));
+            return true;
+        }
+
+        if (id == R.id.menu_about) {
+            Toast.makeText(this, "This game was written by Kyle Bennett", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+
+    }
+
 }
