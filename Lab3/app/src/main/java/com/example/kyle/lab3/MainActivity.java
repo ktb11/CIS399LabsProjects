@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private String player1Name = "";
     private String player2Name = "";
     private int winningScore;
+    private int dieValue;
 
     // settings
     boolean showImg;
@@ -137,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         else
             DieImage.setVisibility(View.VISIBLE);
 
-        winningScore = Integer.valueOf(prefs.getString
+        winningScore = Integer.parseInt(prefs.getString("pref_winning_score", "100" ));
+        dieValue = Integer.parseInt(prefs.getString("pref_num_die_sides", "6"));
 
     }
 
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         switch (v.getId()) {
             case R.id.rollBtn:
-                rollVal = (rand.nextInt(6) + 1);
+                rollVal = (rand.nextInt(dieValue) + 1);
                 displayImage(rollVal);
                 if (rollVal == 1) {
                     curPoints = 0;
@@ -190,6 +192,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             case 6:
                 id = R.drawable.die6;
                 break;
+            case 7:
+                id = R.drawable.die7;
+                break;
+            case 8:
+                id = R.drawable.die8;
+                break;
         }
         DieImage.setImageResource(id);
     }
@@ -203,12 +211,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     private void determineWinner() {
-        if (p1TotalPoints >= 100 && p2TotalPoints < 100) {
+        if (p1TotalPoints >= winningScore && p2TotalPoints < winningScore) {
             winner.setText(player1Name);
             Toast.makeText(this, player1Name + " has won", Toast.LENGTH_LONG).show();
             isWinner = true;
         }
-        if (p2TotalPoints >= 100 && p1TotalPoints < 100) {
+        if (p2TotalPoints >= winningScore && p1TotalPoints < winningScore) {
             winner.setText(player2Name);
             Toast.makeText(this, player2Name + " has won", Toast.LENGTH_LONG).show();
             isWinner = true;

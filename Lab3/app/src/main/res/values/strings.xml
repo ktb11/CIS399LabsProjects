@@ -1,16 +1,32 @@
 <resources>
     <string name="app_name">Lab3</string>
+
     <string name="pref_show_images">pref_show_images</string>
+
     <string name="pref_winning_score">pref_winning_score</string>
-    <string-array name="winning_score_array">
+    <string-array name="winning_score_keys">
         <item>50</item>
         <item>100</item>
-        <item>150</item>
+        <item>200</item>
     </string-array>
 
-    <string-array name="winning_score_vals">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+    <string-array name="winning_score_values">
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
     </string-array>
+    <string name="winning_score_default">100</string>
+
+    <string name="num_die_sides" />
+    <string-array name="die_sides_keys">
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="die_sides_values">
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+    </string-array>
+
 </resources>

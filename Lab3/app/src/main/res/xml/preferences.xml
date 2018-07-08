@@ -6,13 +6,24 @@
         android:summary="Show image for die"
         android:defaultValue="true"
         />
-    <ListPreference
-        android:key="@string/pref_winning_score"
-        android:title="Winning Score"
-        android:summary="Choose a winning score"
-        android:entries="@array/winning_score_array"
-        android:entryValues="@array/winning_score_vals"
-        android:dialogTitle="Winning Score"
 
+    <ListPreference
+        android:key="pref_winning_score"
+        android:title="Winning Score"
+        android:dialogTitle="Winning Score"
+        android:summary="Choose a winning score"
+        android:entries="@array/winning_score_keys"
+        android:entryValues="@array/winning_score_values"
+        android:defaultValue="100"
+        />
+
+    <ListPreference
+        android:key="pref_num_die_sides"
+        android:title="Dice Values"
+        android:dialogTitle="Dice Values"
+        android:summary="Choose how many sides are on the die"
+        android:entries="@array/die_sides_keys"
+        android:entryValues="@array/die_sides_values"
+        android:defaultValue="6"
         />
 </PreferenceScreen>
