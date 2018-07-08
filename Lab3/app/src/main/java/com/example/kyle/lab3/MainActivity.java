@@ -44,11 +44,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private boolean isWinner = false;
     private String player1Name = "";
     private String player2Name = "";
-    private int winningScore;
-    private int dieValue;
+    private String player2NameStorage;
+    private String computerString = "computer";
 
     // settings
     boolean showImg;
+    private int winningScore;
+    private int dieValue;
+    private boolean enableAI;
 
 
     private Random rand = new Random();
@@ -140,6 +143,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         winningScore = Integer.parseInt(prefs.getString("pref_winning_score", "100" ));
         dieValue = Integer.parseInt(prefs.getString("pref_num_die_sides", "6"));
+        enableAI = prefs.getBoolean(getResources().getString(R.string.pref_enable_ai), false);
+        if (enableAI){
+            player2NameStorage = player2Name;
+            player2Name = "computer";
+            p2Name.setText(player2Name);
+        }
+        else {
+            player2Name = player2NameStorage;
+            p2Name.setText(player2Name);
+            getPlayerTurn(playerTurn);
+
+        }
 
     }
 
@@ -152,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                 rollVal = (rand.nextInt(dieValue) + 1);
                 displayImage(rollVal);
                 if (rollVal == 1) {
+                    Toast.makeText(this, "You rolled a 1! Zero points!", Toast.LENGTH_LONG).show();
                     curPoints = 0;
                     playerTurn += 1;
                     break;
@@ -211,6 +227,29 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     private void determineWinner() {
+        // ai code
+        if (enableAI){
+            if(playerTurn == 1){
+                boolean keepRolling = true;
+                int targetScore = 10;
+                while (keepRolling && curPoints < targetScore){
+                    rollVal = (rand.nextInt(dieValue) + 1);
+                    curPoints += rollVal;
+                    if (rollVal == 1) {
+                        Toast.makeText(this, "Computer rolled a 1! Zero points!", Toast.LENGTH_LONG).show();
+                        curPoints = 0;
+                        keepRolling = false;
+                        playerTurn += 1;
+                        //break;
+                    }
+                    //curPoints += rollVal;
+
+                }
+                endTurn();
+
+
+            }
+        }
         if (p1TotalPoints >= winningScore && p2TotalPoints < winningScore) {
             winner.setText(player1Name);
             Toast.makeText(this, player1Name + " has won", Toast.LENGTH_LONG).show();
@@ -222,9 +261,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             isWinner = true;
         }
         turnPoints.setText(Integer.toString(curPoints));
-        if (playerTurn > 1)
+        if (playerTurn > 1) {
             playerTurn = 0;
+        }
         getPlayerTurn(playerTurn);
+
     }
 
     private void endTurn() {
@@ -240,8 +281,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     private void newGame() {
-        player1Name = "";
-        player2Name = "";
         playerTurn = 0;
         p1TotalPoints = 0;
         p2TotalPoints = 0;
@@ -249,10 +288,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         player1Score.setText(Integer.toString(p1TotalPoints));
         player2Score.setText(Integer.toString(p2TotalPoints));
         winner.setText("waiting");
-        p1Name.setText("");
-        p2Name.setText("");
 
     }
+
+    private boolean checkAITurn(){
+        if (playerTurn == 1)
+            enableAI = true;
+        else
+            enableAI = false;
+        return enableAI;
+    }
+
+    private void computerTurn(){
+
+    }
+
 
     @Override
     public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {

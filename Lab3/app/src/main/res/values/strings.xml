@@ -2,6 +2,7 @@
     <string name="app_name">Lab3</string>
 
     <string name="pref_show_images">pref_show_images</string>
+    <string name="pref_enable_ai">pref_enable_ai</string>
 
     <string name="pref_winning_score">pref_winning_score</string>
     <string-array name="winning_score_keys">

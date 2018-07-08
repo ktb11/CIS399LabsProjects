@@ -2,16 +2,22 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
         android:key="@string/pref_show_images"
-        android:title="Show images"
-        android:summary="Show image for die"
+        android:title="Show Images"
+        android:summary="show image for die"
         android:defaultValue="true"
+        />
+
+    <CheckBoxPreference
+        android:key="@string/pref_enable_ai"
+        android:title="Play Against Computer "
+        android:defaultValue="false"
         />
 
     <ListPreference
         android:key="pref_winning_score"
         android:title="Winning Score"
         android:dialogTitle="Winning Score"
-        android:summary="Choose a winning score"
+        android:summary="choose a winning score"
         android:entries="@array/winning_score_keys"
         android:entryValues="@array/winning_score_values"
         android:defaultValue="100"
@@ -21,7 +27,7 @@
         android:key="pref_num_die_sides"
         android:title="Dice Values"
         android:dialogTitle="Dice Values"
-        android:summary="Choose how many sides are on the die"
+        android:summary="choose how many sides are on the die"
         android:entries="@array/die_sides_keys"
         android:entryValues="@array/die_sides_values"
         android:defaultValue="6"
