@@ -12,6 +12,10 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.second_activity);
 
 
+//        SecondFragment secondFragment = (SecondFragment)getFragmentManager()
+//                .findFragmentById(R.id.second_fragment);
+
+
 
     }
 }
