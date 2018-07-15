@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+import java.text.DecimalFormat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,8 +61,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         TideItem item = tideItems.get(position);
+        DecimalFormat formatter = new DecimalFormat("#0.00");
+        double predValueCm = Double.parseDouble(item.getPredValueFt());
+        predValueCm *= 30.48;
+//        formatter.format(predValueCm);
         Toast.makeText(this,
-                "Predicted height: " + item.getPredValue() + " feet.",
+                "Predicted heights"+ "\r\n" + item.getPredValueFt() + " feet." + "\r\n" + formatter.format(predValueCm) + " cm",
                 Toast.LENGTH_LONG).show();
     }
 }

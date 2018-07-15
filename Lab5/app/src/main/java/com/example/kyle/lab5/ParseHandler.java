@@ -12,7 +12,8 @@ public class ParseHandler extends DefaultHandler {
     private boolean isDate = false;
     private boolean isDay = false;
     private boolean isTime = false;
-    private boolean isPredValue = false;
+    private boolean isPredValueFt = false;
+    private boolean isPredValueCm = false;
     private boolean isHighLow = false;
 
     public TideItems getItems() { return tideItems; }
@@ -44,7 +45,7 @@ public class ParseHandler extends DefaultHandler {
             return;
         }
         else if (qName.equals("pred")) {
-            isPredValue = true;
+            isPredValueFt = true;
             return;
         }
         else if (qName.equals("highlow")) {
@@ -78,9 +79,9 @@ public class ParseHandler extends DefaultHandler {
             item.setTime(s);
             isTime = false;
         }
-        else if (isPredValue){
-            item.setPredValue(s);
-            isPredValue = false;
+        else if (isPredValueFt){
+            item.setPredValueFt(s);
+            isPredValueFt = false;
         }
         else if (isHighLow){
             item.setHighLow(s);

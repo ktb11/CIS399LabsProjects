@@ -5,9 +5,10 @@ public class TideItem {
     private String date = null;
     private String day = null;
     private String time = null;
-    private String predValue = null;
+    private String predValueFt = null;
+    private String predValueCm = null;
     private String highLow = null;
-    
+
 
     public String getDate() {
         return date;
@@ -32,12 +33,22 @@ public class TideItem {
     public void setTime(String time) {
         this.time = time;
     }
-    public String getPredValue() {
-        return predValue;
+    public String getPredValueFt() {
+        return predValueFt;
     }
 
-    public void setPredValue(String predValue) {
-        this.predValue = predValue;
+    public void setPredValueFt(String predValueFt) {
+        this.predValueFt = predValueFt;
+    }
+    public String getPredValueCm() {
+        double dataFt = Integer.parseInt(getPredValueFt());
+        double dataCm = dataFt*30.48;
+        predValueCm = Double.toString(dataCm);
+        return predValueCm;
+    }
+
+    public void setPredValueCm(String predValueCm) {
+        this.predValueCm = predValueCm;
     }
 
     public String getHighLow() {
@@ -46,5 +57,6 @@ public class TideItem {
     public void setHighLow(String highLow) {
         this.highLow = highLow;
     }
+
 
 }
