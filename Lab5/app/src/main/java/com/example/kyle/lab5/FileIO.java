@@ -13,7 +13,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class FileIO {
 
-    private final String FILENAME= "floranceTides.xml";
+    private final String FILENAME= "floranceTide71518.xml";
     private Context context = null;
 
     public FileIO (Context context) {
@@ -44,7 +44,7 @@ public class FileIO {
         }
 
         catch (Exception e) {
-            Log.e("News reader", e.toString());
+            Log.e("Tide reader", e.toString());
             return null;
         }
     }

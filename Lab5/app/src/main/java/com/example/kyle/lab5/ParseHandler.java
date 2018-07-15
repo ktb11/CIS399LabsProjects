@@ -8,11 +8,19 @@ public class ParseHandler extends DefaultHandler {
     private TideItems tideItems;
     private TideItem item;
 
+    // booleans to check if data has been read.
+    private boolean isDate = false;
+    private boolean isDay = false;
+    private boolean isTime = false;
+    private boolean isPredValue = false;
+    private boolean isHighLow = false;
+
     public TideItems getItems() { return tideItems; }
 
     @Override
     public void startDocument() throws SAXException {
         tideItems = new TideItems();
+        item = new TideItem();
     }
 
     @Override
@@ -21,22 +29,27 @@ public class ParseHandler extends DefaultHandler {
 
         if (qName.equals("item")) {
             item = new TideItem();
-//            item.setDate(atts.getValue(0));
+            return;
         }
         else if (qName.equals("date")) {
-            item.setDate(atts);
+            isDate = true;
+            return;
         }
         else if (qName.equals("day")) {
-            item.setDay(localName);
+            isDay = true;
+            return;
         }
         else if (qName.equals("time")) {
-            item.setTime(atts.getValue(0));
+            isTime = true;
+            return;
         }
         else if (qName.equals("pred")) {
-            item.setPredValue(atts.getValue(0));
+            isPredValue = true;
+            return;
         }
         else if (qName.equals("highlow")) {
-            item.setHighLow(atts.getValue(0));
+            isHighLow = true;
+            return;
         }
     }
 
@@ -46,6 +59,32 @@ public class ParseHandler extends DefaultHandler {
     {
         if (qName.equals("item")) {
             tideItems.add(item);
+        }
+        return;
+    }
+
+    @Override
+    public void characters(char ch[], int start , int length){
+        String s = new String(ch, start,length);
+        if (isDate){
+            item.setDate(s);
+            isDate = false;
+        }
+        else if (isDay){
+            item.setDay(s);
+            isDay = false;
+        }
+        else if (isTime){
+            item.setTime(s);
+            isTime = false;
+        }
+        else if (isPredValue){
+            item.setPredValue(s);
+            isPredValue = false;
+        }
+        else if (isHighLow){
+            item.setHighLow(s);
+            isHighLow = false;
         }
     }
 }

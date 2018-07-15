@@ -1,7 +1,4 @@
 package com.example.kyle.lab5;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TideItem {
 
@@ -10,20 +7,7 @@ public class TideItem {
     private String time = null;
     private String predValue = null;
     private String highLow = null;
-
-    private SimpleDateFormat dateInFormat = new SimpleDateFormat("yyyy/MM/dd");
-
-
-    public String getTideDateFormatted() {
-        try {
-            Date formatDate = dateInFormat.parse(date);
-            String tideDate = dateInFormat.format(formatDate);
-            return tideDate;
-        }
-        catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    
 
     public String getDate() {
         return date;
@@ -62,6 +46,5 @@ public class TideItem {
     public void setHighLow(String highLow) {
         this.highLow = highLow;
     }
-
 
 }

@@ -1,0 +1,121 @@
+
+	<datainfo>
+		<origin>NOAA/NOS/CO-OPS</origin>
+		<disclaimer>
+		Disclaimer: These data are based upon the latest information available as of the date of your request, and may differ from the published tide tables.
+		</disclaimer>
+	<datarange>Daily</datarange>
+		<producttype>Tide Prediction</producttype>
+		<stationname>Florence USCG Pier, Suislaw River</stationname>
+		<state>OR</state>
+		<stationid>9434098</stationid>
+	
+		<stationtype>Harmonic</stationtype>
+		<BeginDate>20180715 02:02</BeginDate>
+		<EndDate>20180716 22:02</EndDate>
+		
+		<dataUnits>Feet</dataUnits>
+		 
+	<Timezone>LST_LDT</Timezone>
+	<Datum>MLLW</Datum>
+	<IntervalType>High/Low</IntervalType>
+	<data>
+	
+			<item>
+				<date>2018/07/15</date>
+				<day>Sun</day>
+		
+				<time>02:02 AM</time>
+			
+				<pred>8.23</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/15</date>
+				<day>Sun</day>
+		
+				<time>08:54 AM</time>
+			
+				<pred>-2.06</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/15</date>
+				<day>Sun</day>
+		
+				<time>03:33 PM</time>
+			
+				<pred>6.90</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/15</date>
+				<day>Sun</day>
+		
+				<time>09:05 PM</time>
+			
+				<pred>1.79</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/16</date>
+				<day>Mon</day>
+		
+				<time>02:56 AM</time>
+			
+				<pred>7.71</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/16</date>
+				<day>Mon</day>
+		
+				<time>09:40 AM</time>
+			
+				<pred>-1.57</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/16</date>
+				<day>Mon</day>
+		
+				<time>04:20 PM</time>
+			
+				<pred>7.00</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/16</date>
+				<day>Mon</day>
+		
+				<time>10:02 PM</time>
+			
+				<pred>1.64</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+		</data>
+</datainfo>
