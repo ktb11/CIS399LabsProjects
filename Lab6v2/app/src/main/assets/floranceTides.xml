@@ -1,0 +1,109 @@
+
+	<datainfo>
+		<origin>NOAA/NOS/CO-OPS</origin>
+		<disclaimer>
+		Disclaimer: These data are based upon the latest information available as of the date of your request, and may differ from the published tide tables.
+		</disclaimer>
+	<datarange>Daily</datarange>
+		<producttype>Tide Prediction</producttype>
+		<stationname>Florence USCG Pier, Suislaw River</stationname>
+		<state>OR</state>
+		<stationid>9434098</stationid>
+	
+		<stationtype>Harmonic</stationtype>
+		<BeginDate>20180711 05:44</BeginDate>
+		<EndDate>20180712 18:22</EndDate>
+		
+		<dataUnits>Feet</dataUnits>
+		 
+	<Timezone>LST_LDT</Timezone>
+	<Datum>MLLW</Datum>
+	<IntervalType>High/Low</IntervalType>
+	<data>
+	
+			<item>
+				<date>2018/07/11</date>
+				<day>Wed</day>
+		
+				<time>05:44 AM</time>
+			
+				<pred>-1.45</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/11</date>
+				<day>Wed</day>
+		
+				<time>12:18 PM</time>
+			
+				<pred>5.96</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/11</date>
+				<day>Wed</day>
+		
+				<time>05:26 PM</time>
+			
+				<pred>2.46</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/11</date>
+				<day>Wed</day>
+		
+				<time>11:27 PM</time>
+			
+				<pred>8.38</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/12</date>
+				<day>Thu</day>
+		
+				<time>06:33 AM</time>
+			
+				<pred>-1.98</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/12</date>
+				<day>Thu</day>
+		
+				<time>01:09 PM</time>
+			
+				<pred>6.29</pred>
+			
+			<highlow>H</highlow>
+			
+			</item>
+		
+			<item>
+				<date>2018/07/12</date>
+				<day>Thu</day>
+		
+				<time>06:22 PM</time>
+			
+				<pred>2.34</pred>
+			
+			<highlow>L</highlow>
+			
+			</item>
+		
+		</data>
+</datainfo>
