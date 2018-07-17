@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private TideItems tideItems;
     static final String DATE = "date";
+    static final String DAY = "day";
+    static final String HL = "hl";
+    static final String TIME = "time";
 
 
     @Override
@@ -35,7 +38,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Keys match the column names in the SimpleAdapter
         for (TideItem item : tideItems){
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put(DATE, item.getDate()+ " "+ item.getDay() + "\r\n"+ item.getHighLow()+": "+item.getTime());
+            map.put(DATE, item.getDate());
+            map.put(DAY, item.getDay());
+            map.put(HL, item.getHighLow());
+            map.put(TIME, item.getTime());
             data.add(map);
         }
 
@@ -46,8 +52,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SimpleAdapter adapter = new SimpleAdapter(this,
                 data,
                 R.layout.listview_item,
-                new String[]{DATE},
-                new int[]{ R.id.dateTextView, }
+                new String[]{DATE,DAY,HL,TIME},
+                new int[]{ R.id.dateTextView,
+                R.id.dayTextView,
+                R.id.hlTextView,
+                R.id.timeTextView,}
         );
 
         // Pass the data adapter to the List View
