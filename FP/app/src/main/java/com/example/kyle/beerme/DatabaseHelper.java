@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL2 = "BEERNAME";
     public static final String COL3 = "BREWERYNAME";
     public static final String COL4 = "DATE";
+    public static final String COL5 = "TYPE";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -20,8 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                " BEERNAME TEXT, BREWERYNAME TEXT, DATE TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME
+                + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL2 + " TEXT,"
+                + COL3 + " TEXT,"
+                + COL4 + " TEXT)";
         db.execSQL(createTable);
     }
 
