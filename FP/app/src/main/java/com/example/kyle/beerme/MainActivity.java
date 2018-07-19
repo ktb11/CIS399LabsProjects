@@ -1,0 +1,67 @@
+package com.example.kyle.beerme;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText etBeerName, etBreweryName, etDate;
+    Button addBtn, goToDbBtn;
+    DatabaseHelper myDB;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        etBeerName = (EditText) findViewById(R.id.beerNameEditText);
+        etBreweryName =(EditText) findViewById(R.id.breweryNameEditText);
+        etDate = (EditText) findViewById(R.id.dateEditText);
+        addBtn = (Button) findViewById(R.id.addBtn);
+        goToDbBtn = (Button) findViewById(R.id.goToDbBtn);
+        myDB = new DatabaseHelper(this);
+
+        goToDbBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String beerName = etBeerName.getText().toString();
+                String breweryName = etBreweryName.getText().toString();
+                String date = etDate.getText().toString();
+
+                if (beerName.length() != 0 && breweryName.length() != 0 && date.length() != 00){
+                    addData(beerName,breweryName,date);
+                    etBeerName.setText("");
+                    etBreweryName.setText("");
+                    etDate.setText("");
+                } else{
+                    Toast.makeText(MainActivity.this, "must add data",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+    }
+
+    public void addData(String beerName, String breweryName, String date){
+        boolean insertData = myDB.addData(beerName,breweryName,date);
+
+        if(insertData == true){
+            Toast.makeText(MainActivity.this, "data inserted",Toast.LENGTH_LONG).show();
+        } else{
+            Toast.makeText(MainActivity.this, "data insertion error",Toast.LENGTH_LONG).show();
+        }
+    }
+}
