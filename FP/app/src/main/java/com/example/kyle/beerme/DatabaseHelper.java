@@ -14,6 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL3 = "BREWERYNAME";
     public static final String COL4 = "DATE";
     public static final String COL5 = "TYPE";
+    public static final String COL6 = "RATING";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -26,7 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL2 + " TEXT,"
                 + COL3 + " TEXT,"
                 + COL4 + " TEXT,"
-                + COL5 + " TEXT)";
+                + COL5 + " TEXT,"
+                + COL6 + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -36,13 +38,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String beerName, String breweryName, String date, String type) {
+    public boolean addData(String beerName, String breweryName, String date, String type, String rating) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, beerName);
         contentValues.put(COL3, breweryName);
         contentValues.put(COL4, date);
         contentValues.put(COL5, type);
+        contentValues.put(COL6, rating);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 

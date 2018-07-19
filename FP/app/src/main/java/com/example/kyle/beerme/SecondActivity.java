@@ -33,7 +33,7 @@ public class SecondActivity extends AppCompatActivity {
         }else{
 
             while(data.moveToNext()){
-                beer = new Beer(data.getString(1), data.getString(2), data.getString(3), data.getString(4));
+                beer = new Beer(data.getString(1), data.getString(2), data.getString(3), data.getString(4), data.getString(5));
                 beerList.add(beer);
 
             }

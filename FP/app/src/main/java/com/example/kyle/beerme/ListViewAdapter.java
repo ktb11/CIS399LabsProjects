@@ -1,6 +1,7 @@
 package com.example.kyle.beerme;
 
 import android.content.Context;
+import android.os.TestLooperManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class ListViewAdapter extends ArrayAdapter<Beer>{
             TextView breweryName = (TextView) convertVeiw.findViewById(R.id.textBreweryName);
             TextView date = (TextView) convertVeiw.findViewById(R.id.textDate);
             TextView type = (TextView) convertVeiw.findViewById(R.id.textType);
+            TextView rating = (TextView) convertVeiw.findViewById(R.id.textRating);
 
 
             if(beerName != null){
@@ -47,6 +49,9 @@ public class ListViewAdapter extends ArrayAdapter<Beer>{
             }
             if(type != null){
                 type.setText(beer.getType());
+            }
+            if(rating != null){
+                rating.setText(beer.getRating());
             }
         }
         return convertVeiw;

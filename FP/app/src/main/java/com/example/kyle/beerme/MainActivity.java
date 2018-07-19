@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button addBtn, goToDbBtn;
     DatabaseHelper myDB;
     Spinner spinType;
+    RatingBar beerRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         addBtn = (Button) findViewById(R.id.addBtn);
         goToDbBtn = (Button) findViewById(R.id.goToDbBtn);
         spinType = (Spinner) findViewById(R.id.spinnerType);
+        beerRating = (RatingBar) findViewById(R.id.ratingBar);
         myDB = new DatabaseHelper(this);
 
         goToDbBtn.setOnClickListener(new View.OnClickListener() {
@@ -44,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
                 String breweryName = etBreweryName.getText().toString();
                 String date = etDate.getText().toString();
                 String type = spinType.getSelectedItem().toString();
+                String rating = Integer.toString(beerRating.getNumStars());
 
                 if (beerName.length() != 0 && breweryName.length() != 0 && date.length() != 00){
-                    addData(beerName,breweryName,date,type);
+                    addData(beerName,breweryName,date,type, rating);
                     etBeerName.setText("");
                     etBreweryName.setText("");
                     etDate.setText("");
@@ -59,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addData(String beerName, String breweryName, String date, String type){
-        boolean insertData = myDB.addData(beerName,breweryName,date,type);
+    public void addData(String beerName, String breweryName, String date, String type, String rating){
+        boolean insertData = myDB.addData(beerName,breweryName,date,type, rating);
 
         if(insertData == true){
             Toast.makeText(MainActivity.this, "data inserted",Toast.LENGTH_LONG).show();
