@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ListViewAdapter extends ArrayAdapter<Beer>{
@@ -31,6 +33,7 @@ public class ListViewAdapter extends ArrayAdapter<Beer>{
             TextView beerName = (TextView) convertVeiw.findViewById(R.id.textBeerName);
             TextView breweryName = (TextView) convertVeiw.findViewById(R.id.textBreweryName);
             TextView date = (TextView) convertVeiw.findViewById(R.id.textDate);
+            TextView type = (TextView) convertVeiw.findViewById(R.id.textType);
 
 
             if(beerName != null){
@@ -41,6 +44,9 @@ public class ListViewAdapter extends ArrayAdapter<Beer>{
             }
             if(date != null){
                 date.setText(beer.getDate());
+            }
+            if(type != null){
+                type.setText(beer.getType());
             }
         }
         return convertVeiw;

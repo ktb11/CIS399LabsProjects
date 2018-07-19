@@ -25,7 +25,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL2 + " TEXT,"
                 + COL3 + " TEXT,"
-                + COL4 + " TEXT)";
+                + COL4 + " TEXT,"
+                + COL5 + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -35,12 +36,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String beerName, String breweryName, String date) {
+    public boolean addData(String beerName, String breweryName, String date, String type) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, beerName);
         contentValues.put(COL3, breweryName);
         contentValues.put(COL4, date);
+        contentValues.put(COL5, type);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 

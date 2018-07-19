@@ -4,11 +4,13 @@ public class Beer {
     private String beerName;
     private String breweryName;
     private String date;
+    private String type;
 
-    public Beer(String beerName, String breweryName, String date){
+    public Beer(String beerName, String breweryName, String date, String type){
         this.beerName = beerName;
         this.breweryName = breweryName;
         this.date = date;
+        this.type = type;
     }
 
     public String getBeerName() {
@@ -21,5 +23,9 @@ public class Beer {
 
     public String getDate() {
         return date;
+    }
+
+    public String getType() {
+        return type;
     }
 }
