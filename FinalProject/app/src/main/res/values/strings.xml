@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FinalProject</string>
     <string-array name="beer_type_array">
+        <item>Select A Type</item>
         <item>Pale Ale</item>
         <item>Indian Pale Ale</item>
         <item>Cider</item>

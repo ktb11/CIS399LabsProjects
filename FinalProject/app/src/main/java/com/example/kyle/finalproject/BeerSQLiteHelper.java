@@ -12,6 +12,7 @@ public class BeerSQLiteHelper extends SQLiteOpenHelper{
 
     private static final String TAG = "BeerSQLiteHelper";
 
+    public static final String DATABASE_NAME = "beers.db";
     private static final String TABLE_NAME ="beerTable";
     private static final String COL1 = "ID";
     private static final String COL2 = "BEER";
@@ -51,7 +52,7 @@ public class BeerSQLiteHelper extends SQLiteOpenHelper{
 
     }
 
-    public boolean addData(String item) {
+    public boolean addBeerName(String item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, item);
@@ -67,4 +68,13 @@ public class BeerSQLiteHelper extends SQLiteOpenHelper{
             return true;
         }
     }
+
+    public Cursor getData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
+
 }

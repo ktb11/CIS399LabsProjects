@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
     }
 
-    public void addData(String newEntry){
-        boolean insertData = mBeerSQLiteHelper.addData(newEntry);
+    public void addBeerName(String newEntry){
+        boolean insertData = mBeerSQLiteHelper.addBeerName(newEntry);
         if (insertData) {
             Toast.makeText(this, "Data Successfully Inserted!", Toast.LENGTH_LONG).show();
         } else {
@@ -108,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         if (v.getId() == R.id.goToBeerDbId){
             Intent intent = new Intent(this, SecondActivity.class);
             startActivity(intent);
+        }
+
+        if (v.getId() == R.id.addBeerId){
+            String newBeerName = beerNameEditText.getText().toString();
+            if(beerNameEditText.length() != 0){
+                addBeerName(newBeerName);
+                beerNameEditText.setText("");
+            }
         }
 
     }
