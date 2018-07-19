@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".SecondActivity"
+            android:label="Beer Database"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

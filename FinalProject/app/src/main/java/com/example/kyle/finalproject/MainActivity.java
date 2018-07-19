@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -33,10 +34,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private SharedPreferences savedValues;
     private SharedPreferences prefs;
 
+    // initialize variables
+    String beerName;
+    String breweryName;
+    String beerType;
+    String beerCost;
+    int beerRating;
+    String beerDate;
+
+    BeerSQLiteHelper mBeerSQLiteHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mBeerSQLiteHelper = new BeerSQLiteHelper(this);
 
         // reference widgets
         beerNameEditText = (EditText) findViewById(R.id.beerNameId);
@@ -48,16 +60,20 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         addButton = (Button) findViewById(R.id.addBeerId);
         goToDb = (Button) findViewById(R.id.goToBeerDbId);
 
-        // initialize variables
-        String beerName;
-        String breweryName;
-        String beerType;
-        String beerCost;
-        String beerRating;
-        String beerDate;
-
         savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
 
+        addButton.setOnClickListener(this);
+        goToDb.setOnClickListener(this);
+
+    }
+
+    public void addData(String newEntry){
+        boolean insertData = mBeerSQLiteHelper.addData(newEntry);
+        if (insertData) {
+            Toast.makeText(this, "Data Successfully Inserted!", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -65,26 +81,34 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         SharedPreferences.Editor editor = savedValues.edit();
         editor.putString("beerName", beerNameEditText.getText().toString());
         editor.putString("breweryName", breweryNameEditText.getText().toString());
-        //editor.putString("beerType", beerTypeSpin.get);
+        editor.putString("beerType", beerTypeSpin.getSelectedItem().toString());
         editor.putString("beerCost", beerCostEditText.getText().toString());
-        editor.putString("beerRating", Integer.toString(beerRatingBar.getNumStars()));
+        editor.putInt("beerRating", beerRatingBar.getNumStars());
         editor.putString("beerDate", beerDateEditText.getText().toString());
         editor.commit();
         super.onPause();
 
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        beerNameEditText.setText(savedValues.getString("beerName", beerName));
-//        p2Name.setText(savedValues.getString("p2Name", player2Name));
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        beerNameEditText.setText(savedValues.getString("beerName", beerName));
+        breweryNameEditText.setText(savedValues.getString("breweryName", breweryName));
+        //beerTypeSpin.setSelected(savedValues.getString("beerType", beerType));
+        beerCostEditText.setText(savedValues.getString("beerCost", beerCost));
+        beerRatingBar.setNumStars(beerRating);
+        beerDateEditText.setText(savedValues.getString("beerDate", beerDate));
+    }
 
 
     // event handlers
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.goToBeerDbId){
+            Intent intent = new Intent(this, SecondActivity.class);
+            startActivity(intent);
+        }
 
     }
 
@@ -93,16 +117,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             switch (view.getId()) {
                 case R.id.beerNameId:
-                    //player1Name = p1Name.getText().toString();
+                    beerName = beerNameEditText.getText().toString();
                     break;
                 case R.id.breweryNameId:
-                    //player2Name = p2Name.getText().toString();
+                    breweryName = breweryNameEditText.getText().toString();
                     break;
                 case R.id.beerCostId:
-                    //player2Name = p2Name.getText().toString();
+                    beerCost = beerCostEditText.getText().toString();
                     break;
                 case R.id.beerDateId:
-                    //player2Name = p2Name.getText().toString();
+                    beerDate = beerDateEditText.getText().toString();
                     break;
             }
         }
