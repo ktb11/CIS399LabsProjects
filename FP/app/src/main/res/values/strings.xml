@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BeerMe</string>
+    <string name="app_name">Beer Me App</string>
 
     <string-array name="beer_type_array">
         <item>Select A Type</item>
