@@ -61,7 +61,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Date"
-        android:inputType="textPersonName"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="@+id/breweryNameEditText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
