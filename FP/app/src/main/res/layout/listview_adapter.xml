@@ -3,61 +3,124 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="100">
+    >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="50">
+        android:layout_height="match_parent"
+        android:layout_weight="1.3"
+        >
+
+        <TextView
+            android:id="@+id/labelBeerName"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Beer Name: "
+            android:layout_width="match_parent"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/labelBreweryName"
+            android:text="Brewery Name:"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        >
 
         <TextView
             android:id="@+id/textBeerName"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="Beer Name"
+            android:text="Data Beer Name"
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="36dp"/>
 
         <TextView
             android:id="@+id/textBreweryName"
-            android:text="Brewery Name"
+            android:text="Data Brewery Name"
             android:gravity="center"
             android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="36dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="50">
+        android:layout_height="match_parent"
+        android:layout_weight="1.35"
+        >
 
         <TextView
-            android:text="Date"
+            android:text="Date: "
+            android:id="@+id/labelDate"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+
+        <TextView
+            android:text="Type: "
+            android:id="@+id/labelType"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+
+        <TextView
+            android:text="Rating: "
+            android:id="@+id/labelRating"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        >
+
+        <TextView
+            android:text="Data Date"
             android:id="@+id/textDate"
             android:gravity="center"
             android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+            android:layout_height="24dp"/>
 
         <TextView
-            android:text="Type"
+            android:text="Data Type"
             android:id="@+id/textType"
             android:gravity="center"
             android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+            android:layout_height="24dp"/>
 
         <TextView
-            android:text="Rating"
+            android:text="Data Rating"
             android:id="@+id/textRating"
             android:gravity="center"
             android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+            android:layout_height="24dp"/>
 
 
 
