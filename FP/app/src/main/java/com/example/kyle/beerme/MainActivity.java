@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity implements EditText.OnEditor
         editor.putString("beerName", etBeerName.getText().toString());
         editor.putString("breweryName", etBreweryName.getText().toString());
         editor.putString("date", etDate.getText().toString());
-        editor.putString("type", spinType.getSelectedItem().toString());
-        editor.putString("rating",Float.toString(beerRating.getRating())) ;
+        //editor.putString("type", spinType.getSelectedItem().toString());
+        //editor.putString("rating",Float.toString(beerRating.getRating())) ;
         editor.commit();
         super.onPause();
 
@@ -123,7 +123,8 @@ public class MainActivity extends AppCompatActivity implements EditText.OnEditor
         etBeerName.setText(savedValues.getString("beerName", beerName));
         etBreweryName.setText(savedValues.getString("breweryName", breweryName));
         etDate.setText(savedValues.getString("date", date));
-        //spinType.set;
+        //spinType.set();
+        //beerRating.setRating(Float.parseFloat("rating"));
     }
 
 
